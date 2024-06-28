@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale EC2 Auto Scaling Group</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        async function scaleAutoScalingGroup() {
+            const groupName = document.getElementById('groupName').value;
+            const desiredCapacity = document.getElementById('desiredCapacity').value;
+            const awsAccessKeyId = document.getElementById('awsAccessKeyId').value;
+            const awsSecretAccessKey = document.getElementById('awsSecretAccessKey').value;
+            const regionName = document.getElementById('regionName').value;
+
+            const response = await fetch('/cgi-bin/scale_autoscaling_group.py', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    groupName: groupName,
+                    desiredCapacity: desiredCapacity,
+                    awsAccessKeyId: awsAccessKeyId,
+                    awsSecretAccessKey: awsSecretAccessKey,
+                    regionName: regionName
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.error) {
+                document.getElementById('result').innerText = 'Error: ' + result.error;
+            } else {
+                document.getElementById('result').innerText = 'Auto Scaling Group Scaled: ' + JSON.stringify(result, null, 2);
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-r from-blue-600 to-indigo-800 text-white flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white text-black p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-3xl font-bold mb-6 text-center">Scale EC2 Auto Scaling Group</h1>
+        <form onsubmit="event.preventDefault(); scaleAutoScalingGroup();" class="space-y-4">
+            <div>
+                <label for="groupName" class="block text-sm font-medium">Auto Scaling Group Name:</label>
+                <input type="text" id="groupName" name="groupName" class="mt-1 block w-full p-2 border rounded-md" required>
+            </div>
+            <div>
+                <label for="desiredCapacity" class="block text-sm font-medium">Desired Capacity:</label>
+                <input type="number" id="desiredCapacity" name="desiredCapacity" class="mt-1 block w-full p-2 border rounded-md" required>
+            </div>
+            <div>
+                <label for="awsAccessKeyId" class="block text-sm font-medium">AWS Access Key ID:</label>
+                <input type="text" id="awsAccessKeyId" name="awsAccessKeyId" class="mt-1 block w-full p-2 border rounded-md" required>
+            </div>
+            <div>
+                <label for="awsSecretAccessKey" class="block text-sm font-medium">AWS Secret Access Key:</label>
+                <input type="text" id="awsSecretAccessKey" name="awsSecretAccessKey" class="mt-1 block w-full p-2 border rounded-md" required>
+            </div>
+            <div>
+                <label for="regionName" class="block text-sm font-medium">Region Name:</label>
+                <input type="text" id="regionName" name="regionName" class="mt-1 block w-full p-2 border rounded-md" required>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-md">Scale Auto Scaling Group</button>
+        </form>
+        <pre id="result" class="mt-4 p-2 bg-gray-100 text-black rounded-md"></pre>
+    </div>
+</body>
+</html>
+

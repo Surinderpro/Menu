@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Email Using AWS SES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+    <h1 class="text-4xl font-bold mb-8">Send Email Using AWS SES</h1>
+    <form id="sesEmailForm" class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg space-y-6">
+        <div>
+            <label for="sourceEmail" class="block text-sm font-medium mb-2">Source Email:</label>
+            <input type="email" id="sourceEmail" name="sourceEmail" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <div>
+            <label for="recipientEmails" class="block text-sm font-medium mb-2">Recipient Emails (comma separated):</label>
+            <input type="text" id="recipientEmails" name="recipientEmails" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <div>
+            <label for="subject" class="block text-sm font-medium mb-2">Subject:</label>
+            <input type="text" id="subject" name="subject" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <div>
+            <label for="body" class="block text-sm font-medium mb-2">Body:</label>
+            <textarea id="body" name="body" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300"></textarea>
+        </div>
+        <div>
+            <label for="awsAccessKeyId" class="block text-sm font-medium mb-2">AWS Access Key ID:</label>
+            <input type="text" id="awsAccessKeyId" name="awsAccessKeyId" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <div>
+            <label for="awsSecretAccessKey" class="block text-sm font-medium mb-2">AWS Secret Access Key:</label>
+            <input type="password" id="awsSecretAccessKey" name="awsSecretAccessKey" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <div>
+            <label for="regionName" class="block text-sm font-medium mb-2">Region Name:</label>
+            <input type="text" id="regionName" name="regionName" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 outline-none text-gray-300">
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded font-semibold transition transform hover:scale-105">Send Email</button>
+    </form>
+    <div id="result" class="mt-6 p-4 bg-gray-800 rounded-lg w-full max-w-lg text-gray-300"></div>
+
+    <script>
+        document.getElementById('sesEmailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var sourceEmail = document.getElementById('sourceEmail').value.trim();
+            var recipientEmails = document.getElementById('recipientEmails').value.trim().split(',');
+            var subject = document.getElementById('subject').value.trim();
+            var body = document.getElementById('body').value.trim();
+            var awsAccessKeyId = document.getElementById('awsAccessKeyId').value.trim();
+            var awsSecretAccessKey = document.getElementById('awsSecretAccessKey').value.trim();
+            var regionName = document.getElementById('regionName').value.trim();
+
+            fetch('/cgi-bin/send_email_ses.py', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sourceEmail: sourceEmail,
+                    recipientEmails: recipientEmails,
+                    subject: subject,
+                    body: body,
+                    awsAccessKeyId: awsAccessKeyId,
+                    awsSecretAccessKey: awsSecretAccessKey,
+                    regionName: regionName
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                if (data.error) {
+                    resultDiv.innerHTML = '<p class="text-red-500">Error: ' + data.error + '</p>';
+                } else {
+                    resultDiv.innerHTML = '<p class="text-green-500">Email sent successfully!</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = '<p class="text-red-500">Error: ' + error.message + '</p>';
+            });
+        });
+    </script>
+</body>
+</html>
+

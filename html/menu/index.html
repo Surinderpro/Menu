@@ -1,127 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+      }
 
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
     </style>
-</head>
+  </head>
+  <body
+    class="bg-gradient-to-r from-gray-900 to-gray-600 text-white flex flex-col items-center justify-center min-h-screen m-0"
+  >
+    <h1 class="text-5xl font-bold mb-8">Welcome to Unified Task Hub</h1>
 
-<body class="bg-gradient-to-r from-gray-900 to-gray-600 text-white flex flex-col items-center justify-center min-h-screen m-0">
-    <h1 class="text-5xl font-bold mb-8">Welcome to Menu Project</h1>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Google Search</h2>
+    <div class="w-full max-w-4xl space-y-6">
+      <!-- Python Tasks -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2
+          class="text-2xl font-bold mb-4 cursor-pointer"
+          onclick="toggleSection('pythonTasks')"
+        >
+          Python Tasks
+        </h2>
+        <div id="pythonTasks" class="space-y-4 hidden">
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Google Search</h3>
             <p class="mb-4">Search the web with Google.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="goToGoogleSearch()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Send Bulk Email</h2>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="goToGoogleSearch()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Send Bulk Email</h3>
             <p class="mb-4">Send emails to multiple recipients at once.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="sendBulkEmail()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Geo Coordinates</h2>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="sendBulkEmail()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Geo Coordinates</h3>
             <p class="mb-4">Get your current geographical coordinates.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="geoCoordinates()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Docker Kesari</h2>
-            <p class="mb-4">Manage Docker containers.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="dockerfun()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Launch AWS Instance</h2>
-            <p class="mb-4">Launch a new AWS EC2 instance.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="launchInstance()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Get Logs</h2>
-            <p class="mb-4">Retrieve logs from your application.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="getLogs()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Get EC2 Metrics</h2>
-            <p class="mb-4">View metrics for your EC2 instances.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="getMetrics()">Go</button>
-        </div>
-
-        <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">File Management</h2>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="geoCoordinates()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">File Management</h3>
             <p class="mb-4">Manage your files easily.</p>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="goToFileManagement()">Go</button>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="goToFileManagement()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Live Interpreter</h3>
+            <p class="mb-4">Live HTML Interpreter.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="htmlinterfun()"
+            >
+              Go
+            </button>
+          </div>
         </div>
-         <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-<h2 class="text-xl font-bold mb-4">Docker</h2>                                                                 <p class="mb-4">Docker Command Executor.</p>                                                                           <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="docker2fun()">Go</button>
+      </div>
+
+      <!-- Linux Tasks -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2
+          class="text-2xl font-bold mb-4 cursor-pointer"
+          onclick="toggleSection('linuxTasks')"
+        >
+          Linux Tasks
+        </h2>
+        <div id="linuxTasks" class="space-y-4 hidden">
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Docker Hub</h3>
+            <p class="mb-4">Manage Docker containers.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="dockerfun()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Docker Command Executor</h3>
+            <p class="mb-4">Docker Command Executor.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="docker2fun()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Network Scan</h3>
+            <p class="mb-4">Go to Network Scan.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="networkScan()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Live Camera</h3>
+            <p class="mb-4">Live capture camera.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="goToLiveCamera()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Network Traffic Analysis</h3>
+            <p class="mb-4">Go to network traffic analysis.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="network_traffic_analysis()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Remote Server Monitoring</h3>
+            <p class="mb-4">Go to remote server monitoring.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="remote_server_monitoring()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Vulnerability Scan</h3>
+            <p class="mb-4">Go to Vulnerability Scan.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="vulnerabilityScan()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">DnsLookup</h3>
+            <p class="mb-4">Go to DnsLookup.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="dnsLookup()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">
+              Automated Vulnerability Assessment
+            </h3>
+            <p class="mb-4">Go to Automated Vulnerability Assessment.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="automated_vulnerability_assessment()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Check Website Status</h3>
+            <p class="mb-4">Go to Website Status.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="websiteStatus()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Secure File Encryption</h3>
+            <p class="mb-4">Go to Secure File Encryption.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="secure_file_encryption()"
+            >
+              Go
+            </button>
+          </div>
         </div>
-         <div class="card bg-gray-800 p-6 rounded-lg shadow-lg">
-<h2 class="text-xl font-bold mb-4">Live Interpreter</h2>                                                                 <p class="mb-4">Live HTML INTERPRETER.</p>                                                                           <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" onclick="htmlinterfun()">Go</button>                           </div>
+      </div>
+
+      <!-- AWS Tasks -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2
+          class="text-2xl font-bold mb-4 cursor-pointer"
+          onclick="toggleSection('awsTasks')"
+        >
+          AWS Tasks
+        </h2>
+        <div id="awsTasks" class="space-y-4 hidden">
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Launch AWS Instance</h3>
+            <p class="mb-4">Launch a new AWS EC2 instance.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="launchInstance()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Get Logs</h3>
+            <p class="mb-4">Retrieve logs from your application.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="getLogs()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Get EC2 Metrics</h3>
+            <p class="mb-4">View metrics for your EC2 instances.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="getMetrics()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Create Key Pair</h3>
+            <p class="mb-4">Create key pair.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="create_key_pair()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Create SNS Topic</h3>
+            <p class="mb-4">Create SNS Topic.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="createSNSTopic()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Create S3 Bucket</h3>
+            <p class="mb-4">Create S3 Bucket.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="createS3Bucket()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Subscribe to SNS Topic</h3>
+            <p class="mb-4">Subscribe to SNS Topic.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="subscribeToSNSTopic()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Send Email Using AWS SES</h3>
+            <p class="mb-4">Send Email Using AWS SES.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="sendEmailSES()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Create Lambda Function</h3>
+            <p class="mb-4">Create Lambda Function.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="CreateLambdaFunction()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Attach IAM Policy to User</h3>
+            <p class="mb-4">Attach IAM Policy to User.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="attachIamPolicy()"
+            >
+              Go
+            </button>
+          </div>
+          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-2">Scale EC2 Auto Scaling Group</h3>
+            <p class="mb-4">Scale EC2 Auto Scaling Group.</p>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              onclick="scaleAutoScalingGroup()"
+            >
+              Go
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        function goToGoogleSearch() {
-            window.location.href = "google_search.html";
-        }
+      function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.classList.toggle("hidden");
+      }
 
-        function sendBulkEmail() {
-            window.location.href = "send_bulk_email.html";
-        }
+      function goToGoogleSearch() {
+        window.location.href = "google_search.html";
+      }
 
-        function geoCoordinates() {
-            window.location.href = "geo_coordinates.html";
-        }
+      function sendBulkEmail() {
+        window.location.href = "send_bulk_email.html";
+      }
 
-        function dockerfun() {
-            window.location.href = "docker.html";
-        }
+      function geoCoordinates() {
+        window.location.href = "geo_coordinates.html";
+      }
 
-        function launchInstance() {
-            window.location.href = "launch_instance.html";
-        }
+      function dockerfun() {
+        window.location.href = "docker.html";
+      }
 
-        function getLogs() {
-            window.location.href = "get_logs.html";
-        }
+      function launchInstance() {
+        window.location.href = "launch_instance.html";
+      }
 
-        function getMetrics() {
-            window.location.href = "get_ec2_metrics.html";
-        }
+      function getLogs() {
+        window.location.href = "get_logs.html";
+      }
 
-        function goToFileManagement() {
-            window.location.href = "file_management.html";
-        }
-        function docker2fun() {
-            window.location.href = "linux.html";
-        }
-        function htmlinterfun() {
-            window.location.href = "html_live_interpreter.html";
-        }
-        function goToLiveCamera() {
-            window.location.href = "live_camera.html";
-        }
+      function getMetrics() {
+        window.location.href = "get_ec2_metrics.html";
+      }
+
+      function goToFileManagement() {
+        window.location.href = "file_management.html";
+      }
+
+      function docker2fun() {
+        window.location.href = "linux.html";
+      }
+
+      function htmlinterfun() {
+        window.location.href = "html_live_interpreter.html";
+      }
+
+      function goToLiveCamera() {
+        window.location.href = "https://13.201.192.129/menu/cam_live.html";
+      }
+
+      function networkScan() {
+        window.location.href = "network_scan.html";
+      }
+
+      function websiteStatus() {
+        window.location.href = "website_status.html";
+      }
+
+      function vulnerabilityScan() {
+        window.location.href = "vulnerability_scan.html";
+      }
+
+      function dnsLookup() {
+        window.location.href = "dns_lookup.html";
+      }
+
+      function secure_file_encryption() {
+        window.location.href = "secure_file_encryption.html";
+      }
+
+      function network_traffic_analysis() {
+        window.location.href = "network_traffic_analysis.html";
+      }
+
+      function remote_server_monitoring() {
+        window.location.href = "remote_server_monitoring.html";
+      }
+
+      function automated_vulnerability_assessment() {
+        window.location.href = "automated_vulnerability_assessment.html";
+      }
+
+      function create_key_pair() {
+        window.location.href = "create_key_pair.html";
+      }
+
+      function createSNSTopic() {
+        window.location.href = "create_topic.html";
+      }
+
+      function createS3Bucket() {
+        window.location.href = "create_bucket.html";
+      }
+
+      function subscribeToSNSTopic() {
+        window.location.href = "subscribe_sns.html";
+      }
+
+      function sendEmailSES() {
+        window.location.href = "send_email_ses.html";
+      }
+
+      function CreateLambdaFunction() {
+        window.location.href = "create_lambda_function.html";
+      }
+      function attachIamPolicy() {
+        window.location.href = "attach_iam_policy.html";
+      }
+      function scaleAutoScalingGroup() {
+        window.location.href = "scale_autoscaling_group.html";
+      }
     </script>
-</body>
-
+  </body>
 </html>
+
