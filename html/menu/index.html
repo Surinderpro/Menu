@@ -189,26 +189,6 @@
               Go
             </button>
           </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Check Website Status</h3>
-            <p class="mb-4">Go to Website Status.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="websiteStatus()"
-            >
-              Go
-            </button>
-          </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Secure File Encryption</h3>
-            <p class="mb-4">Go to Secure File Encryption.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="secure_file_encryption()"
-            >
-              Go
-            </button>
-          </div>
         </div>
       </div>
 
@@ -291,46 +271,6 @@
               Go
             </button>
           </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Send Email Using AWS SES</h3>
-            <p class="mb-4">Send Email Using AWS SES.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="sendEmailSES()"
-            >
-              Go
-            </button>
-          </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Create Lambda Function</h3>
-            <p class="mb-4">Create Lambda Function.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="CreateLambdaFunction()"
-            >
-              Go
-            </button>
-          </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Attach IAM Policy to User</h3>
-            <p class="mb-4">Attach IAM Policy to User.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="attachIamPolicy()"
-            >
-              Go
-            </button>
-          </div>
-          <div class="card bg-gray-800 p-4 rounded-lg shadow-lg">
-            <h3 class="text-xl font-bold mb-2">Scale EC2 Auto Scaling Group</h3>
-            <p class="mb-4">Scale EC2 Auto Scaling Group.</p>
-            <button
-              class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              onclick="scaleAutoScalingGroup()"
-            >
-              Go
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -389,20 +329,12 @@
         window.location.href = "network_scan.html";
       }
 
-      function websiteStatus() {
-        window.location.href = "website_status.html";
-      }
-
       function vulnerabilityScan() {
         window.location.href = "vulnerability_scan.html";
       }
 
       function dnsLookup() {
         window.location.href = "dns_lookup.html";
-      }
-
-      function secure_file_encryption() {
-        window.location.href = "secure_file_encryption.html";
       }
 
       function network_traffic_analysis() {
@@ -432,21 +364,6 @@
       function subscribeToSNSTopic() {
         window.location.href = "subscribe_sns.html";
       }
-
-      function sendEmailSES() {
-        window.location.href = "send_email_ses.html";
-      }
-
-      function CreateLambdaFunction() {
-        window.location.href = "create_lambda_function.html";
-      }
-      function attachIamPolicy() {
-        window.location.href = "attach_iam_policy.html";
-      }
-      function scaleAutoScalingGroup() {
-        window.location.href = "scale_autoscaling_group.html";
-      }
     </script>
   </body>
 </html>
-
