@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 flex items-center justify-center h-screen text-white">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 class="text-2xl font-bold mb-6 text-center text-teal-400">Gemini GPT</h1>
+        <textarea id="prompt" placeholder="Enter your prompt here..."
+                  class="w-full h-40 p-4 mb-6 bg-gray-900 text-white rounded-lg border border-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-teal-400"></textarea>
+        <button id="generateButton" class="bg-teal-400 text-gray-900 font-semibold py-3 px-6 rounded-lg w-full hover:bg-teal-300 transition duration-300">
+            Generate
+        </button>
+        <div id="responseContainer" class="mt-6 p-4 bg-gray-900 text-white rounded-lg border border-gray-700 max-h-72 overflow-y-auto">
+        </div>
+
+        <!-- New buttons for Delete and Save -->
+        <div class="mt-4 flex justify-between">
+            <button id="deleteButton" class="bg-red-500 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-red-400 transition duration-300">
+                Delete Content
+            </button>
+            <button id="saveButton" class="bg-blue-500 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-blue-400 transition duration-300">
+                Save Content
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function() {
+            var prompt = document.getElementById('prompt').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/cgi-bin/gemini.py', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('responseContainer').innerText = xhr.responseText;
+                }
+            };
+
+            xhr.send('prompt=' + encodeURIComponent(prompt));
+        });
+
+        // Delete Button Functionality
+        document.getElementById('deleteButton').addEventListener('click', function() {
+            document.getElementById('responseContainer').innerText = '';
+        });
+
+        // Save Button Functionality
+        document.getElementById('saveButton').addEventListener('click', function() {
+            var content = document.getElementById('responseContainer').innerText;
+
+            if (!content) {
+                alert('There is no content to save!');
+                return;
+            }
+
+            var blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            var fileName = prompt('Enter a file name (without extension):', 'output');
+
+            if (fileName) {
+                var format = prompt('Enter format (txt, docx, pdf):', 'txt').toLowerCase();
+
+                if (format === 'docx') {
+                    blob = new Blob([content], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+                } else if (format === 'pdf') {
+                    blob = new Blob([content], { type: 'application/pdf' });
+                } else {
+                    format = 'txt';
+                }
+
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = fileName + '.' + format;
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>
+
